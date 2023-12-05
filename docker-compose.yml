@@ -57,16 +57,6 @@ services:
           cpus: '2'
           memory: '2G'
 
-  spark-history-server:
-    image: bde2020/spark-history-server:3.3.0-hadoop3.3
-    container_name: spark-history-server
-    depends_on:
-      - spark-master
-    ports:
-      - "18081:18081"
-    volumes:
-      - /tmp/spark-events-local:/tmp/spark-events
-
   jupyter-notebook:
     image: jupyter/pyspark-notebook:latest
     environment:
@@ -113,11 +103,6 @@ services:
       - "8081:80"
     depends_on:
       - mysql-db
-
-  custom-php:
-    image: custom-php:1.0
-    ports:
-      - "8083:80"
 
 volumes:
   hadoop_namenode_data:
